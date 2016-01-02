@@ -63,9 +63,13 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
-
+#theme: landscape
+theme: maupassant
+#https://github.com/pinggod/hexo-theme-apollo
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+#http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more
 deploy:
-  type:
+  type: git
+  repo: git@github.com:Inza9hi/inza9hi.github.io.git
+  branch: master
