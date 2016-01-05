@@ -1,5 +1,5 @@
 fancybox: true ## If you want to use fancybox please set the value to true
-#duoshuo: ## Your duoshuo_shortname, e.g. haomwei
+duoshuo: ## Your duoshuo_shortname, e.g. haomwei
 disqus: inza9hi
 ## Your disqus_shortname, e.g. haomwei
 google_search: false ## Use Google search, true/false
