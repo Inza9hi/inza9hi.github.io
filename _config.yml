@@ -73,3 +73,12 @@ deploy:
   type: git
   repo: git@github.com:Inza9hi/inza9hi.github.io.git
   branch: master
+
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
