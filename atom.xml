@@ -4,7 +4,7 @@
   <subtitle><![CDATA[3x:No Time for Lusers..]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://inza9hi.github.io/"/>
-  <updated>2016-01-05T11:07:35.738Z</updated>
+  <updated>2016-01-05T11:18:34.782Z</updated>
   <id>http://inza9hi.github.io/</id>
   
   <author>
@@ -19,25 +19,25 @@
     <link href="http://inza9hi.github.io/2016/01/Hive-Hadoop-based-on-Aliyun-OSS/"/>
     <id>http://inza9hi.github.io/2016/01/Hive-Hadoop-based-on-Aliyun-OSS/</id>
     <published>2016-01-05T10:22:39.000Z</published>
-    <updated>2016-01-05T11:07:35.738Z</updated>
+    <updated>2016-01-05T11:18:34.782Z</updated>
     <content type="html"><![CDATA[<p><a href="http://www.aliyun.com/product/oss/" target="_blank" rel="external">OSS</a>是阿里云的对象存储，对应于AWS的S3和百度云的BOS。</p>
 <h2 id="u6280_u672F_u9009_u578B"><a href="#u6280_u672F_u9009_u578B" class="headerlink" title="技术选型"></a>技术选型</h2><p>为什么要用对象存储而不用HDFS呢？<br>在云上搭建Hadoop集群的优势是云主机的高伸缩性和高可用性，而如果自建HDFS与优势相悖。事实上，AWS的S3甚至被Hadoop官方直接支持。<br>为什么不使用阿里官方的E-Mapreduce？<br>第一贵，一台最低主机一小时大概是4块钱，第二还在公测阶段，我自己跑了一个官方文档的group by，遇到很多问题，遇到问题还得自己登陆上去一一排查，还有我们机房可能是私有云。</p>
 <h2 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h2><p>1 下载Jar包。<br>Aliyun官方GitHub上的SDK编译不过去，用官方Shade过的<a href="https://help.aliyun.com/document_detail/emr/sdk/Aliyun-Spark-SDK.html?spm=5176.docemr/quick-start/prepare.6.130.H0Todk" target="_blank" rel="external">sdk</a>我亲测有问题，一直报ClassNotFound，是不是因为是Maven Shade过的，所以没加载进去？</p>
 <pre><code class="bash">wget http://emr-agent-pack.oss-cn-hangzhou.aliyuncs.com/emr-core/1.0.3/emr-core-1.0.3.jar
 </code></pre>
 <p>2 将下载的Jar加入classpath,直接放入$HADOOP_HOME/share/hadoop/common/lib,或者<a href="http://stackoverflow.com/questions/28029134/how-can-i-access-s3-s3n-from-a-local-hadoop-2-6-installation" target="_blank" rel="external">修改Hadoop Classpath</a><br>3 修改Hadoop hdfs-site.xml</p>
-<pre><code class="bash">&lt;property&gt;
-  &lt;name&gt;fs.ossbfs.impl&lt;/name&gt;
-  &lt;value&gt;com.aliyun.fs.oss.blk.OssFileSystem&lt;/value&gt;
-&lt;/property&gt;
-&lt;property&gt;
-  &lt;name&gt;fs.oss.impl&lt;/name&gt;
-  &lt;value&gt;com.aliyun.fs.oss.nat.NativeOssFileSystem&lt;/value&gt;
-&lt;/property&gt;
-&lt;property&gt;
-  &lt;name&gt;fs.ossn.impl&lt;/name&gt;
-  &lt;value&gt;com.aliyun.fs.oss.nat.NativeOssFileSystem&lt;/value&gt;
-&lt;/property&gt;
+<pre><code class="xml"><span class="tag">&lt;<span class="name">property</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.ossbfs.impl<span class="tag">&lt;/<span class="name">name</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">value</span>&gt;</span>com.aliyun.fs.oss.blk.OssFileSystem<span class="tag">&lt;/<span class="name">value</span>&gt;</span>
+  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">property</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.oss.impl<span class="tag">&lt;/<span class="name">name</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">value</span>&gt;</span>com.aliyun.fs.oss.nat.NativeOssFileSystem<span class="tag">&lt;/<span class="name">value</span>&gt;</span>
+  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">property</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.ossn.impl<span class="tag">&lt;/<span class="name">name</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">value</span>&gt;</span>com.aliyun.fs.oss.nat.NativeOssFileSystem<span class="tag">&lt;/<span class="name">value</span>&gt;</span>
+  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>
 </code></pre>
 <p>4 注意：oss的endpoint分Internal和外部两种</p>
 ]]></content>
